@@ -1,8 +1,88 @@
 .App {
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template: 1fr 0.5fr 10fr 1fr/ 2fr 6fr 2fr;
+  grid-template-areas:
+    "header header header"
+    "nav nav nav"
+    "user main sideBar"
+    "footer footer footer";
+  cursor: pointer;
+  font: 15px/1.5 Georgia, serif;
+  border-style: groove;
 }
 
-.App-logo {
+.header {
+  grid-area: header;
+  border-style: groove;
+  font-size: 30px;
+  text-decoration: underline;
+  background-size: cover;
+  width: 100%;
+  background: url("./header.jpg");
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  background: url("./header.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+.nav {
+  grid-area: nav;
+  border-style: groove;
+  display: flex;
+  flex: wrap;
+  background-color: rgb(58, 66, 66);
+  height: auto;
+  border-style: groove;
+  color: antiquewhite;
+}
+.nav ul {
+  display: flex;
+  list-style-type: none;
+  margin-top: 30px;
+  flex: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+.nav ul li {
+  display: flex;
+  font-size: 20px;
+}
+
+.user {
+  grid-area: user;
+  height: 80em;
+  background-color: rgb(211, 226, 226);
+  border-style: groove;
+  display: flex;
+  justify-content: center;
+}
+.main {
+  grid-area: main;
+  height: 80em;
+  border-style: groove;
+}
+
+.sideBar {
+  grid-area: sideBar;
+  border-style: groove;
+  background-color: rgb(211, 226, 226);
+}
+
+.footer {
+  display: flex;
+  grid-area: footer;
+  border-style: groove;
+  background: lightgrey;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
   pointer-events: none;
@@ -30,4 +110,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
