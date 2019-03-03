@@ -1,14 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 .App {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template: 1fr 0.5fr 10fr 1fr/ 2fr 6fr 2fr;
+
+  grid-template: 2fr 0.5fr 10fr 1fr/ 2fr 6fr 2fr;
+
   grid-template-areas:
     "header header header"
     "nav nav nav"
-    "user main sideBar"
+    "main main sideBar"
     "footer footer footer";
-  cursor: pointer;
+
   font: 15px/1.5 Georgia, serif;
   border-style: groove;
 }
@@ -51,6 +57,7 @@
 .nav ul li {
   display: flex;
   font-size: 20px;
+  color: antiquewhite;
 }
 
 .user {
@@ -59,12 +66,45 @@
   background-color: rgb(211, 226, 226);
   border-style: groove;
   display: flex;
-  justify-content: center;
+  /* flex-direction: column; */
+  /* background: url("./avatar.png");
+  background-repeat: no-repeat; */
+  /* height: 225px; */
+  justify-content: space-around;
+  /* align-content: center; */
+  flex-wrap: wrap;
+  background-size: cover;
+  color: rgb(43, 48, 48);
+  overflow-y: scroll;
 }
+.userlist {
+  grid-area: left;
+  height: 60em;
+  background-color: rgb(211, 226, 226);
+  border-style: groove;
+  display: flex;
+  flex-direction: row;
+  /* background: url("./avatar.png");
+  background-repeat: no-repeat; */
+  /* height: 225px; */
+  justify-content: space-around;
+  /* align-content: center; */
+  flex-wrap: wrap;
+  background-size: cover;
+  color: rgb(43, 48, 48);
+  overflow-y: scroll;
+}
+
 .main {
   grid-area: main;
-  height: 80em;
+  display: grid;
+  grid-template-columns: 2fr 4fr;
+  grid-template-areas: "left centre";
+  height: 60em;
+  width: 100%;
   border-style: groove;
+  overflow-y: scroll;
+  background-color: rgb(60, 165, 165);
 }
 
 .sideBar {
@@ -77,11 +117,14 @@
   display: flex;
   grid-area: footer;
   border-style: groove;
-  background: lightgrey;
+  background-color: rgb(58, 66, 66);
+  align-content: center;
   justify-content: center;
-  flex-grow: 1;
+  color: antiquewhite;
 }
-
+.links {
+  cursor: pointer;
+}
 /* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;

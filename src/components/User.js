@@ -3,9 +3,10 @@ import "../App.css";
 
 class currentUser extends Component {
   render() {
+    const { user } = this.props;
     return (
       <div className="user">
-        <h3> Welcome UserLoggedIn</h3>
+        <h2> user</h2>
       </div>
     );
   }
