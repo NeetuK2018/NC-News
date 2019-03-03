@@ -11,7 +11,8 @@ class Articles extends Component {
     const { topics } = this.state;
 
     return (
-      <div className="main">
+      // <div className="main">
+      <div className="topicList">
         {topics.map(topic => (
           <span key={topic.slug}>
             <Link to={`/topics/${topic.slug}/articles`}>{topic.slug} </Link>

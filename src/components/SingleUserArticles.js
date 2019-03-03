@@ -12,7 +12,7 @@ class SingleUserArticles extends Component {
     const { articles } = this.state;
 
     return (
-      <div className="main">
+      <div className="main centre">
         {articles.map(article => (
           <div key={article.article_id}>
             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>

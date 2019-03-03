@@ -13,8 +13,12 @@ class UserList extends Component {
       <div className="userlist">
         {users.map(user => (
           <div key={user.username}>
-            <Link to={`/users/${user.username}/articles`}>{user.username}</Link>
             <img src={user.avatar_url} alt="Avatar" />
+            <p>
+              <Link to={`/users/${user.username}/articles`}>
+                {user.username}
+              </Link>
+            </p>
           </div>
         ))}
       </div>
