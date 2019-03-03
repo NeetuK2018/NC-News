@@ -2,38 +2,45 @@ import React, { Component } from "react";
 import "../App.css";
 import { Link } from "@reach/router";
 import * as api from "../api.js";
+import SortBy from "./Sortby";
 
 class Articles extends Component {
   state = {
-    topics: []
+    articles: []
   };
   render() {
-    const { topics } = this.state;
+    const { articles } = this.state;
 
     return (
-      // <div className="main">
-      <div className="topicList">
-        {topics.map(topic => (
-          <span key={topic.slug}>
-            <Link to={`/topics/${topic.slug}/articles`}>{topic.slug} </Link>
-          </span>
+      <div className="center">
+        <SortBy sortedArticles={this.sortedArticles} />
+        {articles.map(article => (
+          <div key={article.article_id}>
+            <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
+          </div>
         ))}
       </div>
     );
   }
   componentDidMount() {
-    this.fetchTopics();
+    this.fetchArticles();
   }
 
-  fetchTopics = () => {
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.topic !== this.props.topic) this.fetchArticles();
+  }
+
+  fetchArticles = () => {
+    const { topic } = this.props;
     api
-      .getTopics()
-      .then(topics => {
-        this.setState({ topics });
+      .getArticles(topic)
+      .then(articles => {
+        this.setState({ articles });
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => err);
+  };
+  sortedArticles = articles => {
+    this.setState({ articles });
   };
 }
 

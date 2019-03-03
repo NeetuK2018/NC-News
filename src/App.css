@@ -61,7 +61,7 @@
 }
 
 .user {
-  grid-area: user;
+  grid-area: main;
   height: 80em;
   background-color: rgb(211, 226, 226);
   border-style: groove;
@@ -104,7 +104,7 @@
   height: auto;
 }
 
-.topicList {
+.center {
   grid-area: centre;
   display: flex;
   flex-direction: column;
@@ -144,6 +144,10 @@
 }
 .links {
   cursor: pointer;
+}
+.chosenSort {
+  display: flex;
+  align-self: center;
 }
 /* .App-logo {
   animation: App-logo-spin infinite 20s linear;

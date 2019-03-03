@@ -24,3 +24,59 @@ export const getArticlesByUsername = async username => {
 
   return data.articles;
 };
+
+export const getArticles = async topic => {
+  const URL = topic
+    ? `${BASE_URL}/topics/${topic}/articles`
+    : `${BASE_URL}/articles`;
+
+  const { data } = await axios.get(URL);
+  return data.articles;
+};
+export const getSortedArticles = async (sort_by, order, limit, p) => {
+  const { data } = await axios.get(
+    `${BASE_URL}/articles?sort_by=${sort_by}&order=${order}&limit=${limit}&p=${p}`
+  );
+  return data.articles;
+};
+export const getArticlesByArticleID = async article_id => {
+  const { data } = await axios.get(`${BASE_URL}/articles/${article_id}`);
+  return data.article;
+};
+export const removeArticleById = async article_id => {
+  const data = await axios.delete(`${BASE_URL}/articles/${article_id}`);
+  return data;
+};
+export const addCommentByArticleID = async (body, article_id, userObject) => {
+  const { username } = userObject;
+  const comment = await axios.post(
+    `${BASE_URL}/articles/${article_id}/comments`,
+    { body, username }
+  );
+  return { ...comment, author: comment.username };
+};
+
+export const deleteCommentByID = async ({ comment_id, article_id }) => {
+  const data = await axios.delete(
+    `${BASE_URL}/articles/${article_id}/comments/${comment_id}`
+  );
+  return data;
+};
+export const getCommentsByArticleID = async article_id => {
+  const { data } = await axios.get(
+    `${BASE_URL}/articles/${article_id}/comments`
+  );
+  return data.comments;
+};
+export const voteOnText = async (article_id, comment_id, direction) => {
+  console.log(article_id, comment_id, direction);
+  const URL = comment_id
+    ? `${BASE_URL}/articles/${article_id}/comments/${comment_id}`
+    : `${BASE_URL}/articles/${article_id}`;
+
+  console.log(URL);
+  const { data } = await axios.patch(URL, {
+    inc_votes: direction
+  });
+  return data.article;
+};

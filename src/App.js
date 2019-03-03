@@ -10,7 +10,7 @@ import * as api from "./api";
 import { Router } from "@reach/router";
 import { navigate } from "@reach/router";
 import Users from "./components/Users";
-import SingleUserArticles from "./components/SingleUserArticles";
+import SingleArticle from "./components/SingleArticle";
 
 class App extends Component {
   state = {
@@ -25,7 +25,7 @@ class App extends Component {
         <Router className="main">
           <Users path="/users/*" />
           <Articles path="/topics/:topic/articles" />
-          <SingleUserArticles path="/articles/*" />
+          <SingleArticle path="/articles/*" />
         </Router>
         <SideBar />
         <Footer />
