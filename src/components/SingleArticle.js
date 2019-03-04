@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../api.js";
-import { Link } from "@reach/router";
+
 import "../App.css";
 import Voter from "./Voter";
 import Moment from "moment";
@@ -17,17 +17,21 @@ class SingleArticle extends Component {
   render() {
     const { article, articleDeleted, errorStatus } = this.state;
     const { user } = this.props;
-    console.log(article, "article");
-
+    console.log(article, "hiys");
     // if (isLoading) return <p>Loading...</p>;
     if (articleDeleted) return null;
     if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
     return (
-      <div className="main">
+      <div className="articlecard">
         <div>
           <p>
-            {article.title} {article.topic}{" "}
-            {Moment(article.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
+            <h2>{article.title}</h2>
+            <h5>Topic: {article.topic}</h5>
+
+            <h9>
+              Created:
+              {Moment(article.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
+            </h9>
           </p>
 
           <p> {article.body}</p>
@@ -39,7 +43,7 @@ class SingleArticle extends Component {
             <Voter votes={article.votes} article_id={article.article_id} />
           )}
 
-          {user.username === article.author && (
+          {article.author === user.username && (
             <button onClick={this.handleDelete}>Delete Article</button>
           )}
         </div>

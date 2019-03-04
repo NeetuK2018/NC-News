@@ -9,7 +9,7 @@ class Nav extends Component {
   };
   render() {
     const { topics } = this.state;
-    const { user } = this.props;
+
     return (
       <div className="nav links">
         <ul>
@@ -21,7 +21,7 @@ class Nav extends Component {
           </Link>
 
           <Link to={`/articles`}>
-            <li>All Articles</li>
+            <li>Articles</li>
           </Link>
           <Link to={`/topics/topic/articles`} />
           <p>Topics:</p>

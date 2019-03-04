@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../App.css";
 import { Link } from "@reach/router";
 import * as api from "../api.js";
-import SortBy from "./Sortby";
+import SortBy from "./SortBy";
 
 class Articles extends Component {
   state = {
@@ -12,12 +12,13 @@ class Articles extends Component {
     const { articles } = this.state;
 
     return (
-      <div className="center">
+      <div className="articles">
         <SortBy sortedArticles={this.sortedArticles} />
+
         {articles.map(article => (
-          <div key={article.article_id}>
+          <p key={article.article_id}>
             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
-          </div>
+          </p>
         ))}
       </div>
     );

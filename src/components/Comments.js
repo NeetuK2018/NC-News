@@ -14,32 +14,30 @@ class Comments extends Component {
     console.log(article_id);
 
     return (
-      <div className="main">
-        <h2>Comment below:</h2>
+      <div className="comments">
+        <h4>Comments:</h4>
         {comments.map(comment => (
           <div key={comment.comment_id}>
-            <div>
-              <p>Comment:</p>
-              {comment.body}
-              <p>by</p>
-              {comment.username}
-              {comment.username === user.username ? (
-                <p>Votes:{comment.votes}</p>
-              ) : (
-                <Voter
-                  votes={comment.votes}
-                  comment_id={comment.comment_id}
-                  article_id={comment.article_id}
-                />
-              )}
-              <p>Date added:</p>
-              {Moment(comment.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
-              {user.username === comment.username && (
-                <button onClick={() => this.handleDelete(comment.comment_id)}>
-                  delete
-                </button>
-              )}
-            </div>
+            <p>Comment:</p>
+            {comment.body}
+            <p>by</p>
+            {comment.username}
+            {comment.username === user.username ? (
+              <p>Votes:{comment.votes}</p>
+            ) : (
+              <Voter
+                votes={comment.votes}
+                comment_id={comment.comment_id}
+                article_id={comment.article_id}
+              />
+            )}
+            <p>Date added:</p>
+            {Moment(comment.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
+            {user.username === comment.username && (
+              <button onClick={() => this.handleDelete(comment.comment_id)}>
+                delete
+              </button>
+            )}
           </div>
         ))}
         <AddComment user={user} article_id={article_id} />
