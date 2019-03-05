@@ -80,3 +80,20 @@ export const voteOnText = async (article_id, comment_id, direction) => {
   });
   return data.article;
 };
+export const addNewTopic = async (slug, description) => {
+  const { data } = await axios.post(`${BASE_URL}/topics/`, {
+    slug,
+    description
+  });
+  return data.topic;
+};
+
+export const addArticle = async (title, topic, body, author) => {
+  console.log(title, topic, body, author);
+  const res = await axios.post(`${BASE_URL}/topics/${topic}/articles`, {
+    title,
+    body,
+    author
+  });
+  return res.data.article;
+};

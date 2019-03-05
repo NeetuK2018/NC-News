@@ -15,6 +15,9 @@ class Comments extends Component {
 
     return (
       <div className="comments">
+        <h3>
+          <a href="#bottom">Click Here to Add a Comment</a>
+        </h3>
         <h4>Comments:</h4>
         {comments.map(comment => (
           <div key={comment.comment_id}>
@@ -40,7 +43,9 @@ class Comments extends Component {
             )}
           </div>
         ))}
-        <AddComment user={user} article_id={article_id} />
+        <p id="bottom">
+          <AddComment user={user} article_id={article_id} />
+        </p>
         {newComment}
       </div>
     );

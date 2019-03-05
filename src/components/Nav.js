@@ -24,7 +24,8 @@ class Nav extends Component {
             <li>Articles</li>
           </Link>
           <Link to={`/topics/topic/articles`} />
-          <p>Topics:</p>
+          <h3>Topics:</h3>
+
           {topics.map(topic => (
             <span key={topic.slug}>
               <Link className="links" to={`/topics/${topic.slug}/articles`}>

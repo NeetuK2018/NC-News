@@ -1,20 +1,25 @@
 import React from "react";
 import UserList from "./UserList";
 import { Link } from "@reach/router";
+import AddArticle from "./AddArticle";
 
 const SideBar = ({ user, logout }) => {
   if (user.username)
     return (
-      <section className="sideBar">
+      <div className="sideBar">
         <h3>Welcome to NEWS {user.username}</h3>
         <img src={user.avatar_url} alt="Avatar" />
         <p>
           <Link to={`/users/${user.username}/articles`}>
-            {user.usernames}'s Articles!
+            {" "}
+            {user.username}'s Articles!
           </Link>
         </p>
-        <button onClick={logout}>Log out</button>
-      </section>
+        <p>
+          <button onClick={logout}>Log out</button>
+        </p>
+        <AddArticle user={user} />
+      </div>
     );
   return (
     <div>

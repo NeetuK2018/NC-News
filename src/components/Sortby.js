@@ -62,7 +62,7 @@ class SortBy extends Component {
             Sort
           </button>
         </form>
-        <div className="sortingBar">
+        <div>
           <button
             onClick={() => this.changePage(-1)}
             disabled={p < 2}

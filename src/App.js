@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
-import SideBar from "./components/SideBar";
+// import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
 import Articles from "./components/Articles";
 import * as api from "./api";
@@ -12,6 +12,8 @@ import Users from "./components/Users";
 import SingleUserArticles from "./components/SingleUserArticles";
 import SingleArticle from "./components/SingleArticle";
 import Auth from "./components/Auth";
+import Side from "./components/Side";
+import Home from "./components/Home";
 
 class App extends Component {
   state = {
@@ -25,6 +27,7 @@ class App extends Component {
         <Nav />
         <Auth user={user} login={this.setUser}>
           <Router className="main">
+            <Home path="/" />
             <Users path="/users" />
             <SingleUserArticles path="/users/:username/articles" />
             <Articles path="/topics/:topic/articles" />
@@ -32,7 +35,8 @@ class App extends Component {
             <SingleArticle path="/articles/:article_id" user={user} />
           </Router>
         </Auth>
-        <SideBar user={user} logout={this.clearUser} />
+        {/* <SideBar user={user} logout={this.clearUser} /> */}
+        <Side user={user} logout={this.clearUser} />
         <Footer />
       </div>
     );
