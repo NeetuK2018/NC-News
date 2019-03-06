@@ -49,14 +49,14 @@ export const removeArticleById = async article_id => {
 };
 export const addCommentByArticleID = async (body, article_id, userObject) => {
   const { username } = userObject;
-  const comment = await axios.post(
+  const { data } = await axios.post(
     `${BASE_URL}/articles/${article_id}/comments`,
     { body, username }
   );
-  return { ...comment, author: comment.username };
+  return data.comment;
 };
 
-export const deleteCommentByID = async ({ comment_id, article_id }) => {
+export const deleteCommentByID = async (comment_id, article_id) => {
   const data = await axios.delete(
     `${BASE_URL}/articles/${article_id}/comments/${comment_id}`
   );

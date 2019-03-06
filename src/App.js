@@ -17,10 +17,12 @@ import Home from "./components/Home";
 
 class App extends Component {
   state = {
-    user: {}
+    user: {},
+    isLoading: true
   };
   render() {
-    const { user } = this.state;
+    const { user, isLoading } = this.state;
+    if (isLoading) return <p>Loading..</p>;
     return (
       <div className="App">
         <Header />
@@ -35,23 +37,24 @@ class App extends Component {
             <SingleArticle path="/articles/:article_id" user={user} />
           </Router>
         </Auth>
-        {/* <SideBar user={user} logout={this.clearUser} /> */}
         <Side user={user} logout={this.clearUser} />
         <Footer />
       </div>
     );
   }
   componentDidMount() {
-    const retrievedState = localStorage.getItem("state");
-    if (retrievedState) {
-      this.setState(JSON.parse(retrievedState));
+    const user = localStorage.getItem("user");
+    if (user) {
+      this.setState({ user: JSON.parse(user), isLoading: false });
+    } else {
+      this.setState({ isLoading: false });
     }
   }
   componentDidUpdate() {
     this.handleSave();
   }
   handleSave = () => {
-    localStorage.setItem("state", JSON.stringify(this.state));
+    localStorage.setItem("user", JSON.stringify(this.state.user));
   };
 
   setUser = username => {

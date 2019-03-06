@@ -1,13 +1,17 @@
 import React, { Component } from "react";
-import Comments from "./Comments";
+import Error from "./Error";
 import * as api from "../api.js";
 
 class Addcomment extends Component {
   state = {
-    body: ""
+    body: "",
+    errorStatus: null,
+    isLoading: false
   };
   render() {
-    const { body } = this.state;
+    const { body, errorStatus, isLoading } = this.state;
+    if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
+    else if (isLoading) return <p>Loading..</p>;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -17,7 +21,6 @@ class Addcomment extends Component {
           <input type="text" value={body} onChange={this.handleChange} />
           <button type="submit">Submit</button>
         </form>
-        {body && <Comments newComment={this.state.body} />}
       </div>
     );
   }
@@ -27,11 +30,18 @@ class Addcomment extends Component {
   };
   handleSubmit = event => {
     event.preventDefault();
-    const { body } = this.state;
-    const { article_id, user } = this.props;
+    const { body, isLoading } = this.state;
+    const { article_id, user, addComment } = this.props;
 
-    api.addCommentByArticleID(body, article_id, user);
-    this.setState({ body: "" });
+    api
+      .addCommentByArticleID(body, article_id, user, isLoading)
+      .then(comment => {
+        addComment(comment);
+        this.setState({ body: "", isLoading: false });
+      })
+      .catch(err => {
+        this.setState({ errorStatus: err.response.status });
+      });
   };
 }
 

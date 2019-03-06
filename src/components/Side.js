@@ -3,8 +3,6 @@ import UserList from "./UserList";
 import { Link } from "@reach/router";
 import AddArticle from "./AddArticle";
 import * as api from "../api.js";
-import NewTopic from "./NewTopic";
-
 class Side extends Component {
   state = {
     topics: []
@@ -27,7 +25,6 @@ class Side extends Component {
             <button onClick={logout}>Log out</button>
           </p>
           <AddArticle user={user} topics={topics} />
-          {/* <NewTopic /> */}
         </div>
       );
     return (

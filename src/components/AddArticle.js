@@ -11,12 +11,13 @@ class AddArticle extends Component {
     topic: "coding",
     errorStatus: null,
     topics: [],
-    isCreatingTopic: false
+    isLoading: true
   };
   render() {
-    const { body, title, errorStatus, topics } = this.state;
+    const { body, title, errorStatus, topics, isLoading } = this.state;
     const { user } = this.props;
     if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
+    else if (isLoading) return <p>Loading..</p>;
     return (
       <div className="sidebar">
         {this.state.topic === "add-topic" && <NewTopic user={user} />}
@@ -70,15 +71,15 @@ class AddArticle extends Component {
     api
       .getTopics()
       .then(topics => {
-        this.setState({ topics });
+        this.setState({ topics, isLoading: false });
       })
       .catch(err => {
-        console.log(err);
+        this.setState({ errorStatus: err.response.status });
       });
 
   handleChange = event => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
+    this.setState({ [name]: value, isLoading: false });
   };
   handleSubmit = event => {
     event.preventDefault();
@@ -88,7 +89,7 @@ class AddArticle extends Component {
     api
       .addArticle(title, topic, body, user.username)
       .then(article => {
-        this.setState({ title: "", topic: "", body: "" });
+        this.setState({ title: "", topic: "", body: "", isLoading: false });
         navigate(`/articles/${article.article_id}`);
       })
       .catch(err => {

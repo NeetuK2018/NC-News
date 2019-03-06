@@ -6,12 +6,12 @@ import Voter from "./Voter";
 
 class Comments extends Component {
   state = {
-    comments: []
+    comments: [],
+    isLoading: false
   };
   render() {
     const { user, article_id, newComment } = this.props;
     const { comments } = this.state;
-    console.log(article_id);
 
     return (
       <div className="comments">
@@ -37,15 +37,17 @@ class Comments extends Component {
             <p>Date added:</p>
             {Moment(comment.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
             {user.username === comment.username && (
-              <button onClick={() => this.handleDelete(comment.comment_id)}>
-                delete
-              </button>
+              <button onClick={() => this.handleDelete(comment)}>delete</button>
             )}
           </div>
         ))}
-        <p id="bottom">
-          <AddComment user={user} article_id={article_id} />
-        </p>
+        <span id="bottom">
+          <AddComment
+            user={user}
+            article_id={article_id}
+            addComment={this.addComment}
+          />
+        </span>
         {newComment}
       </div>
     );
@@ -53,30 +55,44 @@ class Comments extends Component {
   componentDidMount() {
     this.fetchComments();
   }
+
   fetchComments = () => {
     const { article_id } = this.props;
-    console.log(article_id, "hiya");
+
     api
       .getCommentsByArticleID(article_id)
       .then(comments => {
         this.setState({ comments, isLoading: false });
       })
       .catch(err => {
-        this.setState({ isLoading: false });
+        this.setState({ errorStatus: err.response.status });
       });
   };
+
+  addComment = commentToAdd => {
+    this.setState(prevState => {
+      return { comments: [commentToAdd, ...prevState.comments] };
+    });
+  };
+
   handleDelete = commentToDelete => {
     const { article_id, comment_id } = commentToDelete;
+
     const currentComms = this.state.comments;
 
     const restOfComms = currentComms.filter(
       comment => comment.comment_id !== commentToDelete.comment_id
     );
-    api.deleteCommentByID(article_id, comment_id).then(data => {
-      this.setState(prevState => ({
-        comments: (prevState.comments = restOfComms)
-      }));
-    });
+    api
+      .deleteCommentByID(comment_id, article_id)
+      .then(data => {
+        this.setState(prevState => ({
+          comments: (prevState.comments = restOfComms)
+        }));
+      })
+      .catch(err => {
+        this.setState({ errorStatus: err.response.status });
+      });
   };
 }
 export default Comments;

@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import "../App.css";
 import { Link } from "@reach/router";
 import * as api from "../api.js";
+import Error from "./Error";
 
 class UserList extends Component {
   state = {
-    users: []
+    users: [],
+    isLoading: true,
+    errorStatus: null
   };
   render() {
-    const { users } = this.state;
+    const { users, isLoading, errorStatus } = this.state;
+    if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
+    if (isLoading) return <p>Loading..</p>;
     return (
       <div className="userlist">
         {users.map(user => (
@@ -32,10 +37,10 @@ class UserList extends Component {
     api
       .getUsers()
       .then(users => {
-        this.setState({ users });
+        this.setState({ users, isLoading: false });
       })
       .catch(err => {
-        console.log(err);
+        this.setState({ errorStatus: err.response.status });
       });
   };
 }

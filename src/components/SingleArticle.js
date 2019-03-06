@@ -17,22 +17,22 @@ class SingleArticle extends Component {
   render() {
     const { article, articleDeleted, errorStatus } = this.state;
     const { user } = this.props;
-    console.log(article, "hiys");
+
     // if (isLoading) return <p>Loading...</p>;
     if (articleDeleted) return null;
     if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
     return (
       <div className="articlecard">
         <div>
-          <p>
-            <h2>{article.title}</h2>
-            <h5>Topic: {article.topic}</h5>
+          {/* <p> */}
+          <h2>{article.title}</h2>
+          <h5>Topic: {article.topic}</h5>
 
-            <h9>
-              Created:
-              {Moment(article.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
-            </h9>
-          </p>
+          <h5>
+            Created:
+            {Moment(article.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
+          </h5>
+          {/* </p> */}
 
           <p> {article.body}</p>
           <p>by</p>

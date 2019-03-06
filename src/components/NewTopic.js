@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../api.js";
-import AddArticle from "./AddArticle";
+// import AddArticle from "./AddArticle";
 
 class NewTopic extends Component {
   state = {
@@ -9,8 +9,8 @@ class NewTopic extends Component {
     newSlug: ""
   };
   render() {
-    const { slug, description, newSlug } = this.state;
-    const { user } = this.props;
+    const { slug, description } = this.state; //newSlug
+    // const { user } = this.props;
     return (
       <div className="sidebar">
         <h3>Create New Topic!</h3>
