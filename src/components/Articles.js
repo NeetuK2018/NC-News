@@ -3,28 +3,36 @@ import "../App.css";
 import { Link } from "@reach/router";
 import * as api from "../api.js";
 import SortBy from "./SortBy";
-import Error from "./Error";
+// import Error from "./Error";
 
 class Articles extends Component {
   state = {
     articles: [],
     isLoading: true,
-    errorStatus: null
+    errorStatus: false
   };
   render() {
     const { articles, errorStatus, isLoading } = this.state;
-    if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
-    else if (isLoading) return <p>Loading..</p>;
+    // if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
+    // can put link inside to go home
+    // else if
+    if (isLoading) return <p>Loading..</p>;
 
     return (
       <div className="articles">
         <SortBy sortedArticles={this.sortedArticles} />
-
         {articles.map(article => (
           <p key={article.article_id}>
             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
           </p>
         ))}
+        {articles.length === 0 && <p>There are no articles for this Topic.</p>}
+        {errorStatus && (
+          <p>
+            This Topic doesn't exist. Why don't you you create one? Go to Post
+            article and then choose New Topic from the dropdown!
+          </p>
+        )}
       </div>
     );
   }
@@ -41,10 +49,10 @@ class Articles extends Component {
     api
       .getArticles(topic)
       .then(articles => {
-        this.setState({ articles, isLoading: false });
+        this.setState({ articles, isLoading: false, errorStatus: false });
       })
       .catch(err => {
-        this.setState({ errorStatus: err.response.status });
+        this.setState({ errorStatus: true, isLoading: false });
       });
   };
   sortedArticles = articles => {

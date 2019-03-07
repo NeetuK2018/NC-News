@@ -12,19 +12,19 @@ class SingleArticle extends Component {
     article: {},
 
     articleDeleted: false,
-    errorStatus: null
+    errorStatus: false,
+    isLoading: true
   };
   render() {
-    const { article, articleDeleted, errorStatus } = this.state;
+    const { article, articleDeleted, errorStatus, isLoading } = this.state;
     const { user } = this.props;
 
-    // if (isLoading) return <p>Loading...</p>;
+    if (isLoading) return <p>Loading...</p>;
     if (articleDeleted) return null;
-    if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
+
     return (
       <div className="articlecard">
         <div>
-          {/* <p> */}
           <h2>{article.title}</h2>
           <h5>Topic: {article.topic}</h5>
 
@@ -32,7 +32,6 @@ class SingleArticle extends Component {
             Created:
             {Moment(article.created_at, "YYYY-MM-DD-Thh:mm:ss").fromNow()}
           </h5>
-          {/* </p> */}
 
           <p> {article.body}</p>
           <p>by</p>

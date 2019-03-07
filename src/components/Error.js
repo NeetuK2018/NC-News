@@ -1,12 +1,11 @@
 import React from "react";
+// import { Link } from "@reach/router";
 
-const Error = ({ errorStatus }) => {
+const Error = ({ errorStatus, message }) => {
   return (
     <div className="error">
       <h3>Error {errorStatus}</h3>
-      <p>
-        <h1> OOps! Something has gone wrong..</h1>;
-      </p>
+      <h1> OOps! Something has gone wrong..</h1>;<p>{message}</p>
     </div>
   );
 };

@@ -18,7 +18,12 @@ class Addcomment extends Component {
           <h2>
             <label>Add a Comment </label>
           </h2>
-          <input type="text" value={body} onChange={this.handleChange} />
+          <input
+            type="text"
+            value={body}
+            onChange={this.handleChange}
+            required
+          />
           <button type="submit">Submit</button>
         </form>
       </div>

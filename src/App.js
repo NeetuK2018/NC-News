@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/Header";
 import Nav from "./components/Nav";
-// import SideBar from "./components/SideBar";
 import Footer from "./components/Footer";
 import Articles from "./components/Articles";
 import * as api from "./api";
@@ -18,16 +17,17 @@ import Home from "./components/Home";
 class App extends Component {
   state = {
     user: {},
-    isLoading: true
+    isLoading: true,
+    userError: false
   };
   render() {
-    const { user, isLoading } = this.state;
+    const { user, isLoading, userError } = this.state;
     if (isLoading) return <p>Loading..</p>;
     return (
       <div className="App">
         <Header />
         <Nav />
-        <Auth user={user} login={this.setUser}>
+        <Auth errorStatus={userError} user={user} login={this.setUser}>
           <Router className="main">
             <Home path="/" />
             <Users path="/users" />
@@ -58,14 +58,21 @@ class App extends Component {
   };
 
   setUser = username => {
-    api.getUserByUsername(username).then(user => {
-      this.setState({ user });
-    });
+    api
+      .getUserByUsername(username)
+      .then(user => {
+        this.setState({ user });
+      })
+      .catch(err => {
+        this.setState({
+          userError: true
+        });
+      });
   };
 
   clearUser = () => {
     navigate("/");
-    this.setState({ user: "" });
+    this.setState({ user: "", userError: false });
   };
 }
 export default App;

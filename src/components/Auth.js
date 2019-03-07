@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import Error from "./Error";
 
 class Auth extends Component {
   state = {
-    username: "",
-    errorStatus: null
+    username: ""
   };
   render() {
-    const { user, children } = this.props;
-    const { username, errorStatus } = this.state;
+    const { user, children, errorStatus } = this.props;
+    const { username } = this.state;
 
-    if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
     if (user.username) return children;
     else
       return (
@@ -20,6 +17,9 @@ class Auth extends Component {
             <input onChange={this.handleChange} value={username} required />
             <button type="submit">Login</button>
           </form>
+          {errorStatus && (
+            <p>This is not Username. Pick one from the list on the right.</p>
+          )}
         </section>
       );
   }
