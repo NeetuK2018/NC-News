@@ -7,13 +7,15 @@ class SingleUserArticles extends Component {
   state = {
     articles: [],
     isLoading: true,
-    user: {}
+    user: {},
+    errorStatus: null
   };
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, errorStatus } = this.state;
 
     if (isLoading) return <p>Loading...</p>;
-
+    if (errorStatus)
+      return <p>Cannot find any Articles. This User doesn't exist.</p>;
     return (
       <div className="center">
         <SortBy sortedArticles={this.sortedArticles} />
@@ -38,7 +40,8 @@ class SingleUserArticles extends Component {
         this.setState({ articles, isLoading: false });
       })
       .catch(err => {
-        console.log(err);
+        console.log(err, "hiya");
+        this.setState({ isLoading: true });
       });
   };
 }

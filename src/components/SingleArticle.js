@@ -5,15 +5,13 @@ import "../App.css";
 import Voter from "./Voter";
 import Moment from "moment";
 import Comments from "./Comments";
-import Error from "./Error";
 
 class SingleArticle extends Component {
   state = {
     article: {},
 
     articleDeleted: false,
-    errorStatus: false,
-    isLoading: true
+    errorStatus: null
   };
   render() {
     const { article, articleDeleted, errorStatus, isLoading } = this.state;
@@ -21,7 +19,10 @@ class SingleArticle extends Component {
 
     if (isLoading) return <p>Loading...</p>;
     if (articleDeleted) return null;
-
+    if (errorStatus)
+      return (
+        <p>This article doesn't exist. Why don't you post a New Article</p>
+      );
     return (
       <div className="articlecard">
         <div>
@@ -58,10 +59,10 @@ class SingleArticle extends Component {
     api
       .getArticlesByArticleID(article_id)
       .then(article => {
-        this.setState({ article, isLoading: false });
+        this.setState({ article, errorStatus: false });
       })
       .catch(err => {
-        this.setState({ article: {}, errorStatus: err.response.status });
+        this.setState({ errorStatus: true });
       });
   };
 

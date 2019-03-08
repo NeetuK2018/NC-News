@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../App.css";
 import { Link } from "@reach/router";
 import * as api from "../api.js";
-import Error from "./Error";
 
 class UserList extends Component {
   state = {
@@ -12,8 +11,9 @@ class UserList extends Component {
   };
   render() {
     const { users, isLoading, errorStatus } = this.state;
-    if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
+
     if (isLoading) return <p>Loading..</p>;
+    if (errorStatus) return <p>User doesn't exist</p>;
     return (
       <div className="userlist">
         {users.map(user => (
@@ -40,7 +40,7 @@ class UserList extends Component {
         this.setState({ users, isLoading: false });
       })
       .catch(err => {
-        this.setState({ errorStatus: err.response.status });
+        this.setState({ isLoading: true });
       });
   };
 }

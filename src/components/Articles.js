@@ -13,9 +13,6 @@ class Articles extends Component {
   };
   render() {
     const { articles, errorStatus, isLoading } = this.state;
-    // if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
-    // can put link inside to go home
-    // else if
     if (isLoading) return <p>Loading..</p>;
 
     return (
