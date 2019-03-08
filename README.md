@@ -13,7 +13,7 @@ Dependencies:
 "react-scripts": "2.1.5"
 
 Prerequisite:
-Node.js
+Node.js v10.10.0
 
 Running Locally
 Clone this repo and then run the command npm install. This will install all the dependencies.
