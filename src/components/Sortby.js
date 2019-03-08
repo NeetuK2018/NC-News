@@ -17,7 +17,6 @@ class SortBy extends Component {
         <form onSubmit={this.handleSubmit} className="sortForm">
           <div>
             <label>Sort by:</label>
-
             <select
               id="sort_by"
               className="chosenSort"
