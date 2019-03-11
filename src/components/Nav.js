@@ -24,7 +24,7 @@ class Nav extends Component {
             <li>Articles</li>
           </Link>
           <Link to={`/topics/topic/articles`} />
-          <h3>Topics:</h3>
+          <h4>Topics:</h4>
 
           {topics.map(topic => (
             <span key={topic.slug}>
@@ -48,7 +48,7 @@ class Nav extends Component {
         this.setState({ topics });
       })
       .catch(err => {
-        console.log(err);
+        this.setState({ errorStatus: true });
       });
   };
 }

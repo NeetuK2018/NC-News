@@ -17,12 +17,18 @@ class SingleUserArticles extends Component {
     if (errorStatus)
       return <p>Cannot find any Articles. This User doesn't exist.</p>;
     return (
-      <div className="center">
+      <div className="articlecard">
         <SortBy sortedArticles={this.sortedArticles} />
         {articles.map(article => (
-          <div key={article.article_id}>
+          <p key={article.article_id}>
+            <p>Topic: {article.topic}</p>
             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
-          </div>
+            <p>
+              by
+              <p>{article.author}</p>
+              <br />
+            </p>{" "}
+          </p>
         ))}
       </div>
     );

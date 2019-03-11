@@ -3,7 +3,6 @@ import "../App.css";
 import { Link } from "@reach/router";
 import * as api from "../api.js";
 import SortBy from "./SortBy";
-// import Error from "./Error";
 
 class Articles extends Component {
   state = {
@@ -16,20 +15,29 @@ class Articles extends Component {
     if (isLoading) return <p>Loading..</p>;
 
     return (
-      <div className="articles">
+      <div className="articlecard">
         <SortBy sortedArticles={this.sortedArticles} />
+        <br />
         {articles.map(article => (
-          <p key={article.article_id}>
+          <span className="article" key={article.article_id}>
+            <p>Topic: {article.topic}</p>
             <Link to={`/articles/${article.article_id}`}>{article.title}</Link>
-          </p>
+            <br />
+            by
+            <br />
+            {article.author}
+            <br />
+            <br />
+            <br />
+          </span>
         ))}
-        {articles.length === 0 && <p>There are no articles for this Topic.</p>}
         {errorStatus && (
-          <p>
+          <span>
             This Topic doesn't exist. Why don't you you create one? Go to Post
             article and then choose New Topic from the dropdown!
-          </p>
+          </span>
         )}
+        {articles.length === 0 && <p>There are no articles for this Topic.</p>}
       </div>
     );
   }
@@ -49,7 +57,7 @@ class Articles extends Component {
         this.setState({ articles, isLoading: false, errorStatus: false });
       })
       .catch(err => {
-        this.setState({ errorStatus: true, isLoading: false });
+        this.setState({ errorStatus: true, isLoading: true });
       });
   };
   sortedArticles = articles => {

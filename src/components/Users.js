@@ -3,7 +3,7 @@ import UserList from "./UserList";
 
 const Users = () => {
   return (
-    <div>
+    <div className="left">
       <UserList />
     </div>
   );

@@ -16,13 +16,13 @@
     "footer footer footer";
 
   font: 15px/1.5 Georgia, serif;
-  border-style: groove;
+
   text-align: center;
 }
 
 .header {
   grid-area: header;
-  border-style: groove;
+  /* border-style: groove; */
   font-size: 30px;
   text-decoration: underline;
   background-size: cover;
@@ -36,17 +36,25 @@
   background-size: 100%;
   background-position: center;
 }
+.home {
+  grid-area: center;
 
+  /* display: flex; */
+  background: url("./newspaper-943004__340.jpg");
+  background-size: cover;
+  background-position: center;
+}
 .nav {
   grid-area: nav;
-  border-style: groove;
+  /* border-style: groove; */
   display: flex;
   flex: wrap;
   background-color: rgb(58, 66, 66);
   height: auto;
-  border-style: groove;
+  /* border-style: groove; */
   color: antiquewhite;
 }
+
 .nav ul {
   display: flex;
   list-style-type: none;
@@ -55,24 +63,33 @@
   justify-content: space-around;
   width: 100%;
 }
-.nav ul li {
+.nav ul li a:visited {
   display: flex;
+  flex: wrap;
   font-size: 20px;
+}
+.nav a {
   color: antiquewhite;
+}
+/* .nav a:visted {
+  color: rgb(100, 100, 182);
+} */
+
+.links a:hover {
+  cursor: pointer;
+  color: rgb(100, 100, 182);
+  font-weight: bold;
 }
 
 .user {
-  grid-area: main;
+  grid-area: center;
   height: 80em;
-  background-color: rgb(211, 226, 226);
+  background-color: rgb(223, 227, 230);
   border-style: groove;
   display: flex;
-  /* flex-direction: column; */
-  /* background: url("./avatar.png");
-  background-repeat: no-repeat; */
-  /* height: 225px; */
+
   justify-content: space-around;
-  /* align-content: center; */
+
   flex-wrap: wrap;
   background-size: cover;
   color: rgb(43, 48, 48);
@@ -83,20 +100,18 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
-  border-style: groove;
 }
 .auth {
   grid-area: main;
   display: flex;
-  background-color: rgb(211, 226, 226);
-  border-style: groove;
+  background-color: rgb(223, 227, 230);
   flex-direction: column;
 }
 .userlist {
-  grid-area: left;
+  grid-area: center;
   height: 60em;
-  background-color: rgb(211, 226, 226);
-  border-style: groove;
+  background-color: rgb(223, 227, 230);
+  /* border-style: groove; */
   display: flex;
   flex-direction: row;
   /* background: url("./avatar.png");
@@ -134,7 +149,7 @@
   flex-wrap: wrap;
   background-color: rgb(170, 196, 219);
   overflow-y: scroll;
-  border-style: groove;
+  /* border-style: groove; */
 }
 
 .comments {
@@ -143,7 +158,10 @@
   flex-direction: row; */
   justify-content: center;
   overflow-y: scroll;
+}
+.commentscard {
   background-color: aliceblue;
+  border-bottom-style: dotted;
   border-color: black;
 }
 
@@ -151,26 +169,29 @@
   grid-area: main;
 
   display: grid;
-  grid-template-columns: 2fr 4fr;
-  grid-template-areas: "left center";
+  /* grid-template-columns: 2fr 4fr; */
+  grid-template-areas: "center"; /* left center*/
   height: 60em;
   width: 100%;
-  border-style: groove;
+
   overflow-y: scroll;
-  background-color: rgb(211, 226, 226);
-  border-style: groove;
+  background-color: rgb(223, 227, 230);
 }
 
 .articlecard {
   grid-area: center;
-  display: flex;
-  flex-wrap: wrap;
+  /* display: flex;
+  flex-wrap: wrap; */
   border-style: groove;
   background-color: rgb(214, 216, 216);
 
   text-align: center;
   padding: 10px;
 }
+/* .article {
+  border-bottom-style: dotted;
+  border-color: antiquewhite;
+} */
 .articlecard h2 {
   grid-area: center;
   display: flex;
@@ -195,7 +216,7 @@
 
 .sideBar {
   grid-area: sideBar;
-  border-style: groove;
+  /* border-style: groove; */
   background-color: rgb(211, 226, 226);
   justify-content: center;
 }
@@ -203,14 +224,11 @@
 .footer {
   display: flex;
   grid-area: footer;
-  border-style: groove;
+  /* border-style: groove; */
   background-color: rgb(58, 66, 66);
   align-content: center;
   justify-content: center;
   color: antiquewhite;
-}
-.links {
-  cursor: pointer;
 }
 
 /* .App-logo {

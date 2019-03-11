@@ -69,12 +69,10 @@ export const getCommentsByArticleID = async article_id => {
   return data.comments;
 };
 export const voteOnText = async (article_id, comment_id, direction) => {
-  console.log(article_id, comment_id, direction);
   const URL = comment_id
     ? `${BASE_URL}/articles/${article_id}/comments/${comment_id}`
     : `${BASE_URL}/articles/${article_id}`;
 
-  console.log(URL);
   const { data } = await axios.patch(URL, {
     inc_votes: direction
   });
@@ -89,7 +87,6 @@ export const addNewTopic = async (slug, description) => {
 };
 
 export const addArticle = async (title, topic, body, author) => {
-  console.log(title, topic, body, author);
   const res = await axios.post(`${BASE_URL}/topics/${topic}/articles`, {
     title,
     body,

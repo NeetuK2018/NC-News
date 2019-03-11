@@ -31,6 +31,7 @@ weegembump
 Deployed version and Links:
 
 https://github.com/northcoders/FE2-NC-News
+https://dazzling-lichterman-e8660d.netlify.com/
 
 Back-end
 https://nc-news-neetu.herokuapp.com/api/

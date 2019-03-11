@@ -11,9 +11,11 @@ class Auth extends Component {
     if (user.username) return children;
     else
       return (
-        <section className="auth">
+        <section className="auth home">
           <form onSubmit={this.handleSubmit}>
-            <label>Enter Username:</label>
+            <label>
+              <h3>Enter Username</h3>
+            </label>
             <input onChange={this.handleChange} value={username} required />
             <button type="submit">Login</button>
           </form>

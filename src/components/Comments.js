@@ -14,15 +14,15 @@ class Comments extends Component {
     const { comments } = this.state;
 
     return (
-      <div className="comments">
+      <div className="comments ">
         <h3>
           <a href="#bottom">Click Here to Add a Comment</a>
         </h3>
         <h4>Comments:</h4>
         {comments.map(comment => (
-          <div key={comment.comment_id}>
-            <p>Comment:</p>
-            {comment.body}
+          <div className="commentscard" key={comment.comment_id}>
+            {/* <p>Comment:</p> */}
+            <font color="blue">{comment.body}</font>
             <p>by</p>
             {comment.username}
             {comment.username === user.username ? (
