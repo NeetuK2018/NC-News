@@ -49,13 +49,15 @@ class AddArticle extends Component {
             </select>
             <br />
             <label>Your article</label>
-            <input
+            <br />
+            <textarea
               type="text"
               value={body}
               onChange={this.handleChange}
               name="body"
               required
             />
+            <br />
             {this.state.topic !== "add-topic" && (
               <button type="submit">Submit Article</button>
             )}

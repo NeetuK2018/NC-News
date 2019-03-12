@@ -6,14 +6,13 @@ import SortBy from "./SortBy";
 class SingleUserArticles extends Component {
   state = {
     articles: [],
-    isLoading: true,
+
     user: {},
     errorStatus: null
   };
   render() {
-    const { articles, isLoading, errorStatus } = this.state;
+    const { articles, errorStatus } = this.state;
 
-    if (isLoading) return <p>Loading...</p>;
     if (errorStatus)
       return <p>Cannot find any Articles. This User doesn't exist.</p>;
     return (
@@ -47,7 +46,7 @@ class SingleUserArticles extends Component {
       })
       .catch(err => {
         console.log(err, "hiya");
-        this.setState({ isLoading: true });
+        this.setState({ errorStatus: true });
       });
   };
 }

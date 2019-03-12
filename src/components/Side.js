@@ -21,9 +21,13 @@ class Side extends Component {
               {user.username}'s Articles!
             </Link>
           </p>
+
           <p>
             <button onClick={logout}>Log out</button>
           </p>
+          <br />
+          <br />
+
           <AddArticle user={user} topics={topics} />
         </div>
       );

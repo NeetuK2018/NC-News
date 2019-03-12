@@ -46,12 +46,12 @@
 }
 .nav {
   grid-area: nav;
-  /* border-style: groove; */
+
   display: flex;
   flex: wrap;
   background-color: rgb(58, 66, 66);
   height: auto;
-  /* border-style: groove; */
+
   color: antiquewhite;
 }
 
@@ -100,7 +100,10 @@
   flex-direction: row;
   flex-wrap: wrap;
   align-content: flex-start;
+  box-sizing: border-box;
+  justify-content: center;
 }
+
 .auth {
   grid-area: main;
   display: flex;
