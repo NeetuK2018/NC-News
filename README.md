@@ -30,7 +30,7 @@ weegembump
 
 Deployed version and Links:
 
-https://github.com/northcoders/FE2-NC-News
+https://github.com/NeetuK2018/nc-news
 https://dazzling-lichterman-e8660d.netlify.com/
 
 Back-end
