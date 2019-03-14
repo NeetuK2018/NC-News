@@ -1,6 +1,6 @@
 News
 
-The News App is a social news aggregation, web content rating, and discussion website. It is responsive on both small and large screen devices.
+The News is a social news aggregation, web content rating, and discussion website. It is responsive on both small and large screen devices.
 News has articles which are divided into topics. Each article has user curated ratings which can be up or down voted. Users can also add comments about an article. Comments can also be up or down voted. A user can add comments and remove any comments which they have added.
 
 Dependencies:

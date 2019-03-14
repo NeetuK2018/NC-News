@@ -8,11 +8,19 @@ class Articles extends Component {
   state = {
     articles: [],
     isLoading: true,
-    errorStatus: false
+    errorStatus: null
   };
   render() {
     const { articles, errorStatus, isLoading } = this.state;
     if (isLoading) return <p>Loading..</p>;
+    if (errorStatus)
+      return (
+        <span>
+          {" "}
+          This Topic doesn't exist. Why don't you you create one? Go to
+          Postarticle and then choose New Topic from the dropdown!
+        </span>
+      );
 
     return (
       <div className="articlecard">
@@ -31,12 +39,7 @@ class Articles extends Component {
             <br />
           </span>
         ))}
-        {errorStatus && (
-          <span>
-            This Topic doesn't exist. Why don't you you create one? Go to Post
-            article and then choose New Topic from the dropdown!
-          </span>
-        )}
+
         {articles.length === 0 && <p>There are no articles for this Topic.</p>}
       </div>
     );
@@ -54,10 +57,10 @@ class Articles extends Component {
     api
       .getArticles(topic)
       .then(articles => {
-        this.setState({ articles, isLoading: false, errorStatus: false });
+        this.setState({ articles, isLoading: false });
       })
       .catch(err => {
-        this.setState({ errorStatus: true, isLoading: true });
+        this.setState({ isLoading: true });
       });
   };
   sortedArticles = articles => {

@@ -162,6 +162,9 @@
   justify-content: center;
   overflow-y: scroll;
 }
+.addcomments {
+  box-sizing: border-box;
+}
 .commentscard {
   background-color: aliceblue;
   border-bottom-style: dotted;

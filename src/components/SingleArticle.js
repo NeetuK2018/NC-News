@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import * as api from "../api.js";
-
+import { navigate } from "@reach/router";
 import "../App.css";
 import Voter from "./Voter";
 import Moment from "moment";
@@ -11,7 +11,7 @@ class SingleArticle extends Component {
     article: {},
 
     articleDeleted: false,
-    errorStatus: null
+    errorStatus: false
   };
   render() {
     const { article, articleDeleted, errorStatus, isLoading } = this.state;
@@ -54,6 +54,9 @@ class SingleArticle extends Component {
   componentDidMount() {
     this.fetchArticles();
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.article_id !== this.props.article_id) this.fetchArticles();
+  }
   fetchArticles = () => {
     const { article_id } = this.props;
     api
@@ -71,6 +74,7 @@ class SingleArticle extends Component {
     api
       .removeArticleById(article_id)
       .then(res => this.setState({ articleDeleted: true }));
+    navigate("/");
   };
 }
 

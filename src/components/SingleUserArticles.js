@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import * as api from "../api.js";
 import { Link } from "@reach/router";
-import SortBy from "./SortBy";
+// import SortBy from "./SortBy";
 
 class SingleUserArticles extends Component {
   state = {
@@ -17,7 +17,7 @@ class SingleUserArticles extends Component {
       return <p>Cannot find any Articles. This User doesn't exist.</p>;
     return (
       <div className="articlecard">
-        <SortBy sortedArticles={this.sortedArticles} />
+        {/* <SortBy sortedArticles={this.sortedArticles} /> */}
         {articles.map(article => (
           <p key={article.article_id}>
             <p>Topic: {article.topic}</p>

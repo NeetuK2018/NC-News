@@ -13,12 +13,12 @@ class Addcomment extends Component {
     if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
     else if (isLoading) return <p>Loading..</p>;
     return (
-      <div>
+      <div className="addcomment">
         <form onSubmit={this.handleSubmit}>
           <h2>
             <label>Add a Comment </label>
           </h2>
-          <input
+          <textarea
             type="text"
             value={body}
             onChange={this.handleChange}

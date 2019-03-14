@@ -2,22 +2,24 @@ import React, { Component } from "react";
 import * as api from "../api.js";
 import { navigate } from "@reach/router";
 import NewTopic from "./NewTopic";
-import Error from "./Error";
+// import Error from "./Error";
 
 class AddArticle extends Component {
   state = {
     title: "",
     body: "",
     topic: "coding",
-    errorStatus: null,
+    errorStatus: false,
     topics: [],
     isLoading: true
   };
   render() {
-    const { body, title, errorStatus, topics, isLoading } = this.state;
+    const { body, title, topics, isLoading } = this.state;
     const { user } = this.props;
-    if (errorStatus !== null) return <Error errorStatus={errorStatus} />;
-    else if (isLoading) return <p>Loading..</p>;
+
+    console.log(body, title);
+
+    if (isLoading) return <p>Loading..</p>;
     return (
       <div className="sidebar">
         {this.state.topic === "add-topic" && <NewTopic user={user} />}
@@ -69,6 +71,7 @@ class AddArticle extends Component {
   componentDidMount() {
     this.fetchTopics();
   }
+
   fetchTopics = () =>
     api
       .getTopics()
@@ -76,7 +79,7 @@ class AddArticle extends Component {
         this.setState({ topics, isLoading: false });
       })
       .catch(err => {
-        this.setState({ errorStatus: err.response.status });
+        this.setState({ isLoading: true, errorStatus: true });
       });
 
   handleChange = event => {
@@ -91,11 +94,16 @@ class AddArticle extends Component {
     api
       .addArticle(title, topic, body, user.username)
       .then(article => {
-        this.setState({ title: "", topic: "", body: "", isLoading: false });
+        this.setState({
+          title: "",
+          topic: "",
+          body: "",
+          isLoading: false
+        });
         navigate(`/articles/${article.article_id}`);
       })
       .catch(err => {
-        this.setState({ errorStatus: err.response.status });
+        this.setState({ isLoading: true, errorStatus: true });
       });
   };
 }
